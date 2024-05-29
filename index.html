@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Coupon Scraper</title>
+    <title>Couscrabe</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -19,10 +19,11 @@
             padding: 20px 0;
             text-align: center;
             box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            position: relative;
         }
 
         header img {
-            max-width: 150px;
+            max-width: 200px;
             height: auto;
             margin-bottom: 10px;
         }
@@ -84,6 +85,11 @@
             width: 300px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
             text-align: left;
+            transition: transform 0.2s;
+        }
+
+        .coupon:hover {
+            transform: scale(1.05);
         }
 
         .coupon img {
@@ -119,7 +125,7 @@
 </head>
 <body>
     <header>
-        <img src="https://i.ibb.co/B49bnMw/Ku.png" alt="Brand Logo">
+        <img src="https://i.ibb.co/CPrwJpM/Ku-4.png" alt="Brand Logo">
         <h1>Coupon Scraper</h1>
     </header>
     <div id="container">
@@ -129,6 +135,8 @@
         </div>
         <div id="results"></div>
     </div>
+
+    <script id="Cookiebot" src="https://consent.cookiebot.com/uc.js" data-cbid="0bdeca13-8212-4def-b1da-285591e1dbda" data-blockingmode="auto" type="text/javascript"></script>
 
     <script>
         document.addEventListener('DOMContentLoaded', (event) => {
