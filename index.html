@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Couscrabe</title>
+    <title>Coupon Scraper</title>
     <link rel="icon" type="image/x-icon" href="https://i.ibb.co/CPrwJpM/Ku-4.png">
     <style>
         body {
@@ -123,14 +123,11 @@
             text-decoration: underline;
         }
     </style>
-    
-    <script id="Cookiebot" src="https://consent.cookiebot.com/uc.js" data-cbid="0bdeca13-8212-4def-b1da-285591e1dbda" data-blockingmode="auto" type="text/javascript"></script>
-
 </head>
 <body>
     <header>
         <img src="https://i.ibb.co/CPrwJpM/Ku-4.png" alt="Brand Logo">
-        <h1>Couscrabe</h1>
+        <h1>Coupon Scraper</h1>
     </header>
     <div id="container">
         <div id="search">
@@ -140,6 +137,7 @@
         <div id="results"></div>
     </div>
 
+    <script id="Cookiebot" src="https://consent.cookiebot.com/uc.js" data-cbid="0bdeca13-8212-4def-b1da-285591e1dbda" data-blockingmode="auto" type="text/javascript"></script>
 
     <script>
         document.addEventListener('DOMContentLoaded', (event) => {
@@ -166,29 +164,34 @@
                     }
 
                     data.items.forEach(item => {
-                        const couponDiv = document.createElement('div');
-                        couponDiv.className = 'coupon';
+                        // Filter out irrelevant results
+                        const title = item.title.toLowerCase();
+                        const snippet = item.snippet.toLowerCase();
+                        if (title.includes('coupon') || snippet.includes('coupon')) {
+                            const couponDiv = document.createElement('div');
+                            couponDiv.className = 'coupon';
 
-                        const title = document.createElement('h3');
-                        title.textContent = item.title;
+                            const couponTitle = document.createElement('h3');
+                            couponTitle.textContent = item.title;
 
-                        const link = document.createElement('a');
-                        link.href = item.link;
-                        link.textContent = 'View Coupon';
-                        link.target = '_blank';
+                            const link = document.createElement('a');
+                            link.href = item.link;
+                            link.textContent = 'View Coupon';
+                            link.target = '_blank';
 
-                        const snippet = document.createElement('p');
-                        snippet.textContent = item.snippet;
+                            const couponSnippet = document.createElement('p');
+                            couponSnippet.textContent = item.snippet;
 
-                        const logo = document.createElement('img');
-                        logo.src = `https://logo.clearbit.com/${new URL(item.link).hostname}`;
-                        logo.alt = item.title;
+                            const logo = document.createElement('img');
+                            logo.src = `https://logo.clearbit.com/${new URL(item.link).hostname}`;
+                            logo.alt = item.title;
 
-                        couponDiv.appendChild(logo);
-                        couponDiv.appendChild(title);
-                        couponDiv.appendChild(snippet);
-                        couponDiv.appendChild(link);
-                        resultsDiv.appendChild(couponDiv);
+                            couponDiv.appendChild(logo);
+                            couponDiv.appendChild(couponTitle);
+                            couponDiv.appendChild(couponSnippet);
+                            couponDiv.appendChild(link);
+                            resultsDiv.appendChild(couponDiv);
+                        }
                     });
                 })
                 .catch(error => console.error('Error:', error));
